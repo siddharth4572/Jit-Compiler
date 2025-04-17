@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/jit.dir/src/main.cpp.o CMakeFiles/jit.dir/src/helper.cpp.o CMakeFiles/jit.dir/generated/parser.cpp.o CMakeFiles/jit.dir/generated/lexer.cpp.o -o jit 
