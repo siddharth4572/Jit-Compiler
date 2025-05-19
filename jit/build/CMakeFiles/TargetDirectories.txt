@@ -1,0 +1,7 @@
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/intrinsics_gen.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/omp_gen.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/acc_gen.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/jit.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/edit_cache.dir
+/home/Dhananjay/Desktop/jit/build/CMakeFiles/rebuild_cache.dir

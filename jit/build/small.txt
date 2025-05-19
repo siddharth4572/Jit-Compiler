@@ -1,0 +1,11 @@
+a = 5;
+b = 3;
+c = 6;
+if (a < b and a < c)
+    smallest = a;
+else if (b < c)
+    smallest = b;
+else
+    smallest = c;
+print(smallest);
+
