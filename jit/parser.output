@@ -1,0 +1,774 @@
+State 36 conflicts: 4 shift/reduce
+State 37 conflicts: 4 shift/reduce
+State 38 conflicts: 4 shift/reduce
+State 39 conflicts: 4 shift/reduce
+
+
+Grammar
+
+    0 $accept: func $end
+
+    1 stmt: IDENTIFIER ASSIGN expr SEMICOLON
+    2     | RETURN expr SEMICOLON
+    3     | expr SEMICOLON
+
+    4 stmt_list: stmt
+    5          | stmt_list stmt
+
+    6 expr: expr '+' expr
+    7     | expr '-' expr
+    8     | expr '*' expr
+    9     | expr '/' expr
+   10     | IDENTIFIER LPAREN arg_list RPAREN
+   11     | IDENTIFIER
+   12     | NUMBER
+   13     | LPAREN expr RPAREN
+
+   14 arg_list: ε
+   15         | expr
+   16         | arg_list COMMA expr
+
+   17 param_list: ε
+   18           | IDENTIFIER
+   19           | param_list COMMA IDENTIFIER
+
+   20 func: DEF IDENTIFIER LPAREN param_list RPAREN LBRACE stmt_list RBRACE
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '*' (42) 8
+    '+' (43) 6
+    '-' (45) 7
+    '/' (47) 9
+    error (256)
+    IDENTIFIER <str> (258) 1 10 11 18 19 20
+    NUMBER <num> (259) 12
+    DEF (260) 20
+    RETURN (261) 2
+    LPAREN (262) 10 13 20
+    RPAREN (263) 10 13 20
+    LBRACE (264) 20
+    RBRACE (265) 20
+    COMMA (266) 16 19
+    SEMICOLON (267) 1 2 3
+    ASSIGN (268) 1
+
+
+Nonterminals, with rules where they appear
+
+    $accept (18)
+        on left: 0
+    stmt <stmt> (19)
+        on left: 1 2 3
+        on right: 4 5
+    stmt_list <stmtList> (20)
+        on left: 4 5
+        on right: 5 20
+    expr <expr> (21)
+        on left: 6 7 8 9 10 11 12 13
+        on right: 1 2 3 6 7 8 9 13 15 16
+    arg_list <exprList> (22)
+        on left: 14 15 16
+        on right: 10 16
+    param_list <strList> (23)
+        on left: 17 18 19
+        on right: 19 20
+    func (24)
+        on left: 20
+        on right: 0
+
+
+State 0
+
+    0 $accept: • func $end
+
+    DEF  shift, and go to state 1
+
+    func  go to state 2
+
+
+State 1
+
+   20 func: DEF • IDENTIFIER LPAREN param_list RPAREN LBRACE stmt_list RBRACE
+
+    IDENTIFIER  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: func • $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+   20 func: DEF IDENTIFIER • LPAREN param_list RPAREN LBRACE stmt_list RBRACE
+
+    LPAREN  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: func $end •
+
+    $default  accept
+
+
+State 5
+
+   20 func: DEF IDENTIFIER LPAREN • param_list RPAREN LBRACE stmt_list RBRACE
+
+    IDENTIFIER  shift, and go to state 6
+
+    $default  reduce using rule 17 (param_list)
+
+    param_list  go to state 7
+
+
+State 6
+
+   18 param_list: IDENTIFIER •
+
+    $default  reduce using rule 18 (param_list)
+
+
+State 7
+
+   19 param_list: param_list • COMMA IDENTIFIER
+   20 func: DEF IDENTIFIER LPAREN param_list • RPAREN LBRACE stmt_list RBRACE
+
+    RPAREN  shift, and go to state 8
+    COMMA   shift, and go to state 9
+
+
+State 8
+
+   20 func: DEF IDENTIFIER LPAREN param_list RPAREN • LBRACE stmt_list RBRACE
+
+    LBRACE  shift, and go to state 10
+
+
+State 9
+
+   19 param_list: param_list COMMA • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 11
+
+
+State 10
+
+   20 func: DEF IDENTIFIER LPAREN param_list RPAREN LBRACE • stmt_list RBRACE
+
+    IDENTIFIER  shift, and go to state 12
+    NUMBER      shift, and go to state 13
+    RETURN      shift, and go to state 14
+    LPAREN      shift, and go to state 15
+
+    stmt       go to state 16
+    stmt_list  go to state 17
+    expr       go to state 18
+
+
+State 11
+
+   19 param_list: param_list COMMA IDENTIFIER •
+
+    $default  reduce using rule 19 (param_list)
+
+
+State 12
+
+    1 stmt: IDENTIFIER • ASSIGN expr SEMICOLON
+   10 expr: IDENTIFIER • LPAREN arg_list RPAREN
+   11     | IDENTIFIER •
+
+    LPAREN  shift, and go to state 19
+    ASSIGN  shift, and go to state 20
+
+    $default  reduce using rule 11 (expr)
+
+
+State 13
+
+   12 expr: NUMBER •
+
+    $default  reduce using rule 12 (expr)
+
+
+State 14
+
+    2 stmt: RETURN • expr SEMICOLON
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 22
+
+
+State 15
+
+   13 expr: LPAREN • expr RPAREN
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 23
+
+
+State 16
+
+    4 stmt_list: stmt •
+
+    $default  reduce using rule 4 (stmt_list)
+
+
+State 17
+
+    5 stmt_list: stmt_list • stmt
+   20 func: DEF IDENTIFIER LPAREN param_list RPAREN LBRACE stmt_list • RBRACE
+
+    IDENTIFIER  shift, and go to state 12
+    NUMBER      shift, and go to state 13
+    RETURN      shift, and go to state 14
+    LPAREN      shift, and go to state 15
+    RBRACE      shift, and go to state 24
+
+    stmt  go to state 25
+    expr  go to state 18
+
+
+State 18
+
+    3 stmt: expr • SEMICOLON
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+
+    SEMICOLON  shift, and go to state 26
+    '+'        shift, and go to state 27
+    '-'        shift, and go to state 28
+    '*'        shift, and go to state 29
+    '/'        shift, and go to state 30
+
+
+State 19
+
+   10 expr: IDENTIFIER LPAREN • arg_list RPAREN
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    $default  reduce using rule 14 (arg_list)
+
+    expr      go to state 31
+    arg_list  go to state 32
+
+
+State 20
+
+    1 stmt: IDENTIFIER ASSIGN • expr SEMICOLON
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 33
+
+
+State 21
+
+   10 expr: IDENTIFIER • LPAREN arg_list RPAREN
+   11     | IDENTIFIER •
+
+    LPAREN  shift, and go to state 19
+
+    $default  reduce using rule 11 (expr)
+
+
+State 22
+
+    2 stmt: RETURN expr • SEMICOLON
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+
+    SEMICOLON  shift, and go to state 34
+    '+'        shift, and go to state 27
+    '-'        shift, and go to state 28
+    '*'        shift, and go to state 29
+    '/'        shift, and go to state 30
+
+
+State 23
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+   13     | LPAREN expr • RPAREN
+
+    RPAREN  shift, and go to state 35
+    '+'     shift, and go to state 27
+    '-'     shift, and go to state 28
+    '*'     shift, and go to state 29
+    '/'     shift, and go to state 30
+
+
+State 24
+
+   20 func: DEF IDENTIFIER LPAREN param_list RPAREN LBRACE stmt_list RBRACE •
+
+    $default  reduce using rule 20 (func)
+
+
+State 25
+
+    5 stmt_list: stmt_list stmt •
+
+    $default  reduce using rule 5 (stmt_list)
+
+
+State 26
+
+    3 stmt: expr SEMICOLON •
+
+    $default  reduce using rule 3 (stmt)
+
+
+State 27
+
+    6 expr: expr '+' • expr
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 36
+
+
+State 28
+
+    7 expr: expr '-' • expr
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 37
+
+
+State 29
+
+    8 expr: expr '*' • expr
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 38
+
+
+State 30
+
+    9 expr: expr '/' • expr
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 39
+
+
+State 31
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+   15 arg_list: expr •
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    $default  reduce using rule 15 (arg_list)
+
+
+State 32
+
+   10 expr: IDENTIFIER LPAREN arg_list • RPAREN
+   16 arg_list: arg_list • COMMA expr
+
+    RPAREN  shift, and go to state 40
+    COMMA   shift, and go to state 41
+
+
+State 33
+
+    1 stmt: IDENTIFIER ASSIGN expr • SEMICOLON
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+
+    SEMICOLON  shift, and go to state 42
+    '+'        shift, and go to state 27
+    '-'        shift, and go to state 28
+    '*'        shift, and go to state 29
+    '/'        shift, and go to state 30
+
+
+State 34
+
+    2 stmt: RETURN expr SEMICOLON •
+
+    $default  reduce using rule 2 (stmt)
+
+
+State 35
+
+   13 expr: LPAREN expr RPAREN •
+
+    $default  reduce using rule 13 (expr)
+
+
+State 36
+
+    6 expr: expr • '+' expr
+    6     | expr '+' expr •
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    '+'       [reduce using rule 6 (expr)]
+    '-'       [reduce using rule 6 (expr)]
+    '*'       [reduce using rule 6 (expr)]
+    '/'       [reduce using rule 6 (expr)]
+    $default  reduce using rule 6 (expr)
+
+    shift/reduce conflict on token '+':
+        6 expr: expr '+' expr •
+        6 expr: expr • '+' expr
+      Example: expr '+' expr • '+' expr
+      Shift derivation
+        expr
+        ↳ 6: expr '+' expr
+                      ↳ 6: expr • '+' expr
+      Reduce derivation
+        expr
+        ↳ 6: expr                 '+' expr
+             ↳ 6: expr '+' expr •
+
+    shift/reduce conflict on token '-':
+        6 expr: expr '+' expr •
+        7 expr: expr • '-' expr
+      Example: expr '+' expr • '-' expr
+      Shift derivation
+        expr
+        ↳ 6: expr '+' expr
+                      ↳ 7: expr • '-' expr
+      Reduce derivation
+        expr
+        ↳ 7: expr                 '-' expr
+             ↳ 6: expr '+' expr •
+
+    shift/reduce conflict on token '*':
+        6 expr: expr '+' expr •
+        8 expr: expr • '*' expr
+      Example: expr '+' expr • '*' expr
+      Shift derivation
+        expr
+        ↳ 6: expr '+' expr
+                      ↳ 8: expr • '*' expr
+      Reduce derivation
+        expr
+        ↳ 8: expr                 '*' expr
+             ↳ 6: expr '+' expr •
+
+    shift/reduce conflict on token '/':
+        6 expr: expr '+' expr •
+        9 expr: expr • '/' expr
+      Example: expr '+' expr • '/' expr
+      Shift derivation
+        expr
+        ↳ 6: expr '+' expr
+                      ↳ 9: expr • '/' expr
+      Reduce derivation
+        expr
+        ↳ 9: expr                 '/' expr
+             ↳ 6: expr '+' expr •
+
+
+
+State 37
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    7     | expr '-' expr •
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    '+'       [reduce using rule 7 (expr)]
+    '-'       [reduce using rule 7 (expr)]
+    '*'       [reduce using rule 7 (expr)]
+    '/'       [reduce using rule 7 (expr)]
+    $default  reduce using rule 7 (expr)
+
+    shift/reduce conflict on token '+':
+        7 expr: expr '-' expr •
+        6 expr: expr • '+' expr
+      Example: expr '-' expr • '+' expr
+      Shift derivation
+        expr
+        ↳ 7: expr '-' expr
+                      ↳ 6: expr • '+' expr
+      Reduce derivation
+        expr
+        ↳ 6: expr                 '+' expr
+             ↳ 7: expr '-' expr •
+
+    shift/reduce conflict on token '-':
+        7 expr: expr '-' expr •
+        7 expr: expr • '-' expr
+      Example: expr '-' expr • '-' expr
+      Shift derivation
+        expr
+        ↳ 7: expr '-' expr
+                      ↳ 7: expr • '-' expr
+      Reduce derivation
+        expr
+        ↳ 7: expr                 '-' expr
+             ↳ 7: expr '-' expr •
+
+    shift/reduce conflict on token '*':
+        7 expr: expr '-' expr •
+        8 expr: expr • '*' expr
+      Example: expr '-' expr • '*' expr
+      Shift derivation
+        expr
+        ↳ 7: expr '-' expr
+                      ↳ 8: expr • '*' expr
+      Reduce derivation
+        expr
+        ↳ 8: expr                 '*' expr
+             ↳ 7: expr '-' expr •
+
+    shift/reduce conflict on token '/':
+        7 expr: expr '-' expr •
+        9 expr: expr • '/' expr
+      Example: expr '-' expr • '/' expr
+      Shift derivation
+        expr
+        ↳ 7: expr '-' expr
+                      ↳ 9: expr • '/' expr
+      Reduce derivation
+        expr
+        ↳ 9: expr                 '/' expr
+             ↳ 7: expr '-' expr •
+
+
+
+State 38
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    8     | expr '*' expr •
+    9     | expr • '/' expr
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    '+'       [reduce using rule 8 (expr)]
+    '-'       [reduce using rule 8 (expr)]
+    '*'       [reduce using rule 8 (expr)]
+    '/'       [reduce using rule 8 (expr)]
+    $default  reduce using rule 8 (expr)
+
+    shift/reduce conflict on token '+':
+        8 expr: expr '*' expr •
+        6 expr: expr • '+' expr
+      Example: expr '*' expr • '+' expr
+      Shift derivation
+        expr
+        ↳ 8: expr '*' expr
+                      ↳ 6: expr • '+' expr
+      Reduce derivation
+        expr
+        ↳ 6: expr                 '+' expr
+             ↳ 8: expr '*' expr •
+
+    shift/reduce conflict on token '-':
+        8 expr: expr '*' expr •
+        7 expr: expr • '-' expr
+      Example: expr '*' expr • '-' expr
+      Shift derivation
+        expr
+        ↳ 8: expr '*' expr
+                      ↳ 7: expr • '-' expr
+      Reduce derivation
+        expr
+        ↳ 7: expr                 '-' expr
+             ↳ 8: expr '*' expr •
+
+    shift/reduce conflict on token '*':
+        8 expr: expr '*' expr •
+        8 expr: expr • '*' expr
+      Example: expr '*' expr • '*' expr
+      Shift derivation
+        expr
+        ↳ 8: expr '*' expr
+                      ↳ 8: expr • '*' expr
+      Reduce derivation
+        expr
+        ↳ 8: expr                 '*' expr
+             ↳ 8: expr '*' expr •
+
+    shift/reduce conflict on token '/':
+        8 expr: expr '*' expr •
+        9 expr: expr • '/' expr
+      Example: expr '*' expr • '/' expr
+      Shift derivation
+        expr
+        ↳ 8: expr '*' expr
+                      ↳ 9: expr • '/' expr
+      Reduce derivation
+        expr
+        ↳ 9: expr                 '/' expr
+             ↳ 8: expr '*' expr •
+
+
+
+State 39
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+    9     | expr '/' expr •
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    '+'       [reduce using rule 9 (expr)]
+    '-'       [reduce using rule 9 (expr)]
+    '*'       [reduce using rule 9 (expr)]
+    '/'       [reduce using rule 9 (expr)]
+    $default  reduce using rule 9 (expr)
+
+    shift/reduce conflict on token '+':
+        9 expr: expr '/' expr •
+        6 expr: expr • '+' expr
+      Example: expr '/' expr • '+' expr
+      Shift derivation
+        expr
+        ↳ 9: expr '/' expr
+                      ↳ 6: expr • '+' expr
+      Reduce derivation
+        expr
+        ↳ 6: expr                 '+' expr
+             ↳ 9: expr '/' expr •
+
+    shift/reduce conflict on token '-':
+        9 expr: expr '/' expr •
+        7 expr: expr • '-' expr
+      Example: expr '/' expr • '-' expr
+      Shift derivation
+        expr
+        ↳ 9: expr '/' expr
+                      ↳ 7: expr • '-' expr
+      Reduce derivation
+        expr
+        ↳ 7: expr                 '-' expr
+             ↳ 9: expr '/' expr •
+
+    shift/reduce conflict on token '*':
+        9 expr: expr '/' expr •
+        8 expr: expr • '*' expr
+      Example: expr '/' expr • '*' expr
+      Shift derivation
+        expr
+        ↳ 9: expr '/' expr
+                      ↳ 8: expr • '*' expr
+      Reduce derivation
+        expr
+        ↳ 8: expr                 '*' expr
+             ↳ 9: expr '/' expr •
+
+    shift/reduce conflict on token '/':
+        9 expr: expr '/' expr •
+        9 expr: expr • '/' expr
+      Example: expr '/' expr • '/' expr
+      Shift derivation
+        expr
+        ↳ 9: expr '/' expr
+                      ↳ 9: expr • '/' expr
+      Reduce derivation
+        expr
+        ↳ 9: expr                 '/' expr
+             ↳ 9: expr '/' expr •
+
+
+
+State 40
+
+   10 expr: IDENTIFIER LPAREN arg_list RPAREN •
+
+    $default  reduce using rule 10 (expr)
+
+
+State 41
+
+   16 arg_list: arg_list COMMA • expr
+
+    IDENTIFIER  shift, and go to state 21
+    NUMBER      shift, and go to state 13
+    LPAREN      shift, and go to state 15
+
+    expr  go to state 43
+
+
+State 42
+
+    1 stmt: IDENTIFIER ASSIGN expr SEMICOLON •
+
+    $default  reduce using rule 1 (stmt)
+
+
+State 43
+
+    6 expr: expr • '+' expr
+    7     | expr • '-' expr
+    8     | expr • '*' expr
+    9     | expr • '/' expr
+   16 arg_list: arg_list COMMA expr •
+
+    '+'  shift, and go to state 27
+    '-'  shift, and go to state 28
+    '*'  shift, and go to state 29
+    '/'  shift, and go to state 30
+
+    $default  reduce using rule 16 (arg_list)

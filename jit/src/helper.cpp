@@ -1,9 +1,13 @@
+#include <iostream>
 #include <cstdio>
 #include <cstdlib>
-#include "parser.hpp"  
+#include "parser.hpp"
 
 extern FILE* yyin;
 
+void yyerror(const char* s) {
+    std::cerr << "Parser error: " << s << std::endl;
+}
 void restart_lexer(const char* input) {
     static FILE* tmp_input = nullptr;
 

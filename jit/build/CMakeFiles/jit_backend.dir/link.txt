@@ -1,0 +1,2 @@
+/usr/bin/ar qc libjit_backend.a CMakeFiles/jit_backend.dir/src/codegen.cpp.o CMakeFiles/jit_backend.dir/src/helper.cpp.o CMakeFiles/jit_backend.dir/src/jit_interface.cpp.o CMakeFiles/jit_backend.dir/parser.cpp.o CMakeFiles/jit_backend.dir/lexer.cpp.o
+/usr/bin/ranlib libjit_backend.a

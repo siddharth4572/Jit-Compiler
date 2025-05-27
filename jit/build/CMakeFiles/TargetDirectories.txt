@@ -1,3 +1,9 @@
-/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles/jit.dir
-/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles/edit_cache.dir
-/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles/rebuild_cache.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/intrinsics_gen.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/omp_gen.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/acc_gen.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/jit_backend.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/jit.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/jit_gui.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/edit_cache.dir
+/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/rebuild_cache.dir

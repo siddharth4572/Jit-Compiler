@@ -2,63 +2,152 @@
 #define AST_HPP
 
 #include <string>
+#include <vector>
 #include <memory>
-#include <unordered_map>
-#include <iostream>
+#include "llvm/IR/Value.h"
 
-namespace ast {
+class CodegenContext;
 
-class Expr {
+class ASTNode {
+public:
+    virtual ~ASTNode() = default;
+};
+
+// ---------------- Expressions ----------------
+class Expr : public ASTNode {
 public:
     virtual ~Expr() = default;
-    virtual int evaluate(std::unordered_map<std::string, int>& variables) = 0;
+    virtual llvm::Value* codegen(CodegenContext&) = 0;
 };
 
 class Number : public Expr {
-    int value;
 public:
-    Number(int val) : value(val) {}
-    int evaluate(std::unordered_map<std::string, int>&) override { return value; }
+    double value;
+    Number(double v) : value(v) {}
+    llvm::Value* codegen(CodegenContext&) override;
 };
 
 class Variable : public Expr {
-    std::string name;
 public:
-    Variable(const std::string& n) : name(n) {}
-    int evaluate(std::unordered_map<std::string, int>& variables) override {
-        if (variables.find(name) == variables.end()) throw std::runtime_error("Undefined variable: " + name);
-        return variables[name];
-    }
+    std::string name;
+    Variable(std::string n) : name(std::move(n)) {}
+    llvm::Value* codegen(CodegenContext&) override;
 };
 
-class BinaryOp : public Expr {
+class BinaryExpr : public Expr {
+public:
     std::string op;
     std::unique_ptr<Expr> lhs, rhs;
-public:
-    BinaryOp(const std::string& o, Expr* l, Expr* r) : op(o), lhs(l), rhs(r) {}
-    int evaluate(std::unordered_map<std::string, int>& variables) override {
-        int a = lhs->evaluate(variables);
-        int b = rhs->evaluate(variables);
-        if (op == "+") return a + b;
-        if (op == "-") return a - b;
-        if (op == "*") return a * b;
-        if (op == "/") return a / b;
-        throw std::runtime_error("Unknown operator: " + op);
-    }
+    BinaryExpr(std::string o, std::unique_ptr<Expr> l, std::unique_ptr<Expr> r)
+        : op(std::move(o)), lhs(std::move(l)), rhs(std::move(r)) {}
+    llvm::Value* codegen(CodegenContext&) override;
 };
 
-class VarAssign : public Expr {
+class FunctionCall : public Expr {
+public:
+    std::string callee;
+    std::vector<std::unique_ptr<Expr>> args;
+    FunctionCall(std::string c, std::vector<std::unique_ptr<Expr>> a)
+        : callee(std::move(c)), args(std::move(a)) {}
+    llvm::Value* codegen(CodegenContext&) override;
+};
+
+// ---------------- Statements ----------------
+class Stmt : public ASTNode {
+public:
+    virtual ~Stmt() = default;
+    virtual llvm::Value* codegen(CodegenContext&) = 0;
+};
+
+class AssignStmt : public Stmt {
+public:
     std::string name;
-    std::unique_ptr<Expr> value;
-public:
-    VarAssign(const std::string& n, Expr* v) : name(n), value(v) {}
-    int evaluate(std::unordered_map<std::string, int>& variables) override {
-        int val = value->evaluate(variables);
-        variables[name] = val;
-        return val;
-    }
+    std::unique_ptr<Expr> expr;
+    AssignStmt(std::string n, std::unique_ptr<Expr> e)
+        : name(std::move(n)), expr(std::move(e)) {}
+    llvm::Value* codegen(CodegenContext&) override;
 };
 
-} // namespace ast
+class ReturnStmt : public Stmt {
+public:
+    std::unique_ptr<Expr> expr;
+    ReturnStmt(std::unique_ptr<Expr> e) : expr(std::move(e)) {}
+    llvm::Value* codegen(CodegenContext&) override;
+};
 
-#endif // AST_HPP
+class BlockStmt : public Stmt {
+public:
+    std::vector<std::unique_ptr<Stmt>> stmts;
+
+    BlockStmt(std::vector<std::unique_ptr<Stmt>> stmts)
+        : stmts(std::move(stmts)) {}
+
+    llvm::Value* codegen(CodegenContext& context) override;
+};
+
+
+class ExprStmt : public Stmt {
+public:
+    std::unique_ptr<Expr> expr;
+    ExprStmt(std::unique_ptr<Expr> e) : expr(std::move(e)) {}
+    llvm::Value* codegen(CodegenContext&) override;
+};
+
+class WhileStmt : public Stmt {
+public:
+    std::unique_ptr<Expr> condition;
+    std::vector<std::unique_ptr<Stmt>> body;
+    WhileStmt(std::unique_ptr<Expr> cond, std::vector<std::unique_ptr<Stmt>> b)
+        : condition(std::move(cond)), body(std::move(b)) {}
+    llvm::Value* codegen(CodegenContext&) override;
+};
+
+class IfStmt : public Stmt {
+public:
+    std::unique_ptr<Expr> cond;
+    std::unique_ptr<Stmt> thenStmt;
+    std::unique_ptr<Stmt> elseStmt; // always non-null
+
+    IfStmt(std::unique_ptr<Expr> c, std::unique_ptr<Stmt> t, std::unique_ptr<Stmt> e)
+      : cond(std::move(c)), thenStmt(std::move(t)), elseStmt(std::move(e)) {}
+
+    llvm::Value* codegen(CodegenContext& context) override;
+};
+
+
+class ForStmt : public Stmt {
+public:
+    std::unique_ptr<Stmt> init;
+    std::unique_ptr<Expr> cond;
+    std::unique_ptr<Stmt> update;
+    std::vector<std::unique_ptr<Stmt>> body;
+    ForStmt(std::unique_ptr<Stmt> i, std::unique_ptr<Expr> c, std::unique_ptr<Stmt> u, std::vector<std::unique_ptr<Stmt>> b)
+        : init(std::move(i)), cond(std::move(c)), update(std::move(u)), body(std::move(b)) {}
+    llvm::Value* codegen(CodegenContext& context) override;
+};
+
+class FunctionDef : public Stmt {
+public:
+    std::string name;
+    std::vector<std::string> args;
+    std::vector<std::unique_ptr<Stmt>> body;
+    FunctionDef(std::string n, std::vector<std::string> a, std::vector<std::unique_ptr<Stmt>> b)
+        : name(std::move(n)), args(std::move(a)), body(std::move(b)) {}
+    llvm::Value* codegen(CodegenContext&) override;
+    void print();
+};
+
+class RootProgram : public Stmt {
+public:
+    std::vector<std::unique_ptr<Stmt>> statements;
+
+    RootProgram(std::vector<std::unique_ptr<Stmt>> stmts)
+        : statements(std::move(stmts)) {}
+    llvm::Value* codegen(CodegenContext& ctx);
+};
+
+// Declare global variable (defined in exactly one .cpp)
+extern RootProgram* rootProgram;
+
+#endif  // AST_HPP
+

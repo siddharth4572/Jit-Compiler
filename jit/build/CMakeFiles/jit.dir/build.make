@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/Dhananjay/Desktop/JIT compiler"
+CMAKE_SOURCE_DIR = /home/Dhananjay/Desktop/guijit.2./jit
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/Dhananjay/Desktop/JIT compiler/build"
+CMAKE_BINARY_DIR = /home/Dhananjay/Desktop/guijit.2./jit/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/jit.dir/depend.make
@@ -69,91 +69,156 @@ include CMakeFiles/jit.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/jit.dir/flags.make
 
-generated/parser.cpp: /home/Dhananjay/Desktop/JIT\ compiler/src/parser.y
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "[BISON][Parser] Building parser with bison 3.8.2"
-	cd "/home/Dhananjay/Desktop/JIT compiler" && /usr/bin/bison -d -o "/home/Dhananjay/Desktop/JIT compiler/build/generated/parser.cpp" src/parser.y
+parser.cpp: /home/Dhananjay/Desktop/guijit.2./jit/src/parser.y
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][Parser] Building parser with bison 3.8.2"
+	cd /home/Dhananjay/Desktop/guijit.2./jit && /usr/bin/bison --defines=/home/Dhananjay/Desktop/guijit.2./jit/build/parser.hpp -o /home/Dhananjay/Desktop/guijit.2./jit/build/parser.cpp src/parser.y
 
-generated/parser.hpp: generated/parser.cpp
-	@$(CMAKE_COMMAND) -E touch_nocreate generated/parser.hpp
+parser.hpp: parser.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate parser.hpp
 
-generated/lexer.cpp: /home/Dhananjay/Desktop/JIT\ compiler/src/lexer.l
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Lexer] Building scanner with flex 2.6.4"
-	cd "/home/Dhananjay/Desktop/JIT compiler" && /usr/bin/flex "-o/home/Dhananjay/Desktop/JIT compiler/build/generated/lexer.cpp" src/lexer.l
+lexer.cpp: /home/Dhananjay/Desktop/guijit.2./jit/src/lexer.l
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Lexer] Building scanner with flex 2.6.4"
+	cd /home/Dhananjay/Desktop/guijit.2./jit && /usr/bin/flex -o/home/Dhananjay/Desktop/guijit.2./jit/build/lexer.cpp src/lexer.l
 
 CMakeFiles/jit.dir/src/main.cpp.o: CMakeFiles/jit.dir/flags.make
-CMakeFiles/jit.dir/src/main.cpp.o: /home/Dhananjay/Desktop/JIT\ compiler/src/main.cpp
+CMakeFiles/jit.dir/src/main.cpp.o: /home/Dhananjay/Desktop/guijit.2./jit/src/main.cpp
 CMakeFiles/jit.dir/src/main.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/jit.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/src/main.cpp.o -MF CMakeFiles/jit.dir/src/main.cpp.o.d -o CMakeFiles/jit.dir/src/main.cpp.o -c "/home/Dhananjay/Desktop/JIT compiler/src/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/jit.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/src/main.cpp.o -MF CMakeFiles/jit.dir/src/main.cpp.o.d -o CMakeFiles/jit.dir/src/main.cpp.o -c /home/Dhananjay/Desktop/guijit.2./jit/src/main.cpp
 
 CMakeFiles/jit.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/Dhananjay/Desktop/JIT compiler/src/main.cpp" > CMakeFiles/jit.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Dhananjay/Desktop/guijit.2./jit/src/main.cpp > CMakeFiles/jit.dir/src/main.cpp.i
 
 CMakeFiles/jit.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/Dhananjay/Desktop/JIT compiler/src/main.cpp" -o CMakeFiles/jit.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Dhananjay/Desktop/guijit.2./jit/src/main.cpp -o CMakeFiles/jit.dir/src/main.cpp.s
 
-CMakeFiles/jit.dir/src/helper.cpp.o: CMakeFiles/jit.dir/flags.make
-CMakeFiles/jit.dir/src/helper.cpp.o: /home/Dhananjay/Desktop/JIT\ compiler/src/helper.cpp
-CMakeFiles/jit.dir/src/helper.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/jit.dir/src/helper.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/src/helper.cpp.o -MF CMakeFiles/jit.dir/src/helper.cpp.o.d -o CMakeFiles/jit.dir/src/helper.cpp.o -c "/home/Dhananjay/Desktop/JIT compiler/src/helper.cpp"
+CMakeFiles/jit.dir/src/codegen.cpp.o: CMakeFiles/jit.dir/flags.make
+CMakeFiles/jit.dir/src/codegen.cpp.o: /home/Dhananjay/Desktop/guijit.2./jit/src/codegen.cpp
+CMakeFiles/jit.dir/src/codegen.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/jit.dir/src/codegen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/src/codegen.cpp.o -MF CMakeFiles/jit.dir/src/codegen.cpp.o.d -o CMakeFiles/jit.dir/src/codegen.cpp.o -c /home/Dhananjay/Desktop/guijit.2./jit/src/codegen.cpp
 
-CMakeFiles/jit.dir/src/helper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/src/helper.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/Dhananjay/Desktop/JIT compiler/src/helper.cpp" > CMakeFiles/jit.dir/src/helper.cpp.i
+CMakeFiles/jit.dir/src/codegen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/src/codegen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Dhananjay/Desktop/guijit.2./jit/src/codegen.cpp > CMakeFiles/jit.dir/src/codegen.cpp.i
 
-CMakeFiles/jit.dir/src/helper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/src/helper.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/Dhananjay/Desktop/JIT compiler/src/helper.cpp" -o CMakeFiles/jit.dir/src/helper.cpp.s
+CMakeFiles/jit.dir/src/codegen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/src/codegen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Dhananjay/Desktop/guijit.2./jit/src/codegen.cpp -o CMakeFiles/jit.dir/src/codegen.cpp.s
 
-CMakeFiles/jit.dir/generated/parser.cpp.o: CMakeFiles/jit.dir/flags.make
-CMakeFiles/jit.dir/generated/parser.cpp.o: generated/parser.cpp
-CMakeFiles/jit.dir/generated/parser.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/jit.dir/generated/parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/generated/parser.cpp.o -MF CMakeFiles/jit.dir/generated/parser.cpp.o.d -o CMakeFiles/jit.dir/generated/parser.cpp.o -c "/home/Dhananjay/Desktop/JIT compiler/build/generated/parser.cpp"
+CMakeFiles/jit.dir/parser.cpp.o: CMakeFiles/jit.dir/flags.make
+CMakeFiles/jit.dir/parser.cpp.o: parser.cpp
+CMakeFiles/jit.dir/parser.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/jit.dir/parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/parser.cpp.o -MF CMakeFiles/jit.dir/parser.cpp.o.d -o CMakeFiles/jit.dir/parser.cpp.o -c /home/Dhananjay/Desktop/guijit.2./jit/build/parser.cpp
 
-CMakeFiles/jit.dir/generated/parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/generated/parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/Dhananjay/Desktop/JIT compiler/build/generated/parser.cpp" > CMakeFiles/jit.dir/generated/parser.cpp.i
+CMakeFiles/jit.dir/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Dhananjay/Desktop/guijit.2./jit/build/parser.cpp > CMakeFiles/jit.dir/parser.cpp.i
 
-CMakeFiles/jit.dir/generated/parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/generated/parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/Dhananjay/Desktop/JIT compiler/build/generated/parser.cpp" -o CMakeFiles/jit.dir/generated/parser.cpp.s
+CMakeFiles/jit.dir/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Dhananjay/Desktop/guijit.2./jit/build/parser.cpp -o CMakeFiles/jit.dir/parser.cpp.s
 
-CMakeFiles/jit.dir/generated/lexer.cpp.o: CMakeFiles/jit.dir/flags.make
-CMakeFiles/jit.dir/generated/lexer.cpp.o: generated/lexer.cpp
-CMakeFiles/jit.dir/generated/lexer.cpp.o: generated/parser.hpp
-CMakeFiles/jit.dir/generated/lexer.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/jit.dir/generated/lexer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/generated/lexer.cpp.o -MF CMakeFiles/jit.dir/generated/lexer.cpp.o.d -o CMakeFiles/jit.dir/generated/lexer.cpp.o -c "/home/Dhananjay/Desktop/JIT compiler/build/generated/lexer.cpp"
+CMakeFiles/jit.dir/lexer.cpp.o: CMakeFiles/jit.dir/flags.make
+CMakeFiles/jit.dir/lexer.cpp.o: lexer.cpp
+CMakeFiles/jit.dir/lexer.cpp.o: parser.hpp
+CMakeFiles/jit.dir/lexer.cpp.o: CMakeFiles/jit.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/jit.dir/lexer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/jit.dir/lexer.cpp.o -MF CMakeFiles/jit.dir/lexer.cpp.o.d -o CMakeFiles/jit.dir/lexer.cpp.o -c /home/Dhananjay/Desktop/guijit.2./jit/build/lexer.cpp
 
-CMakeFiles/jit.dir/generated/lexer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/generated/lexer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/Dhananjay/Desktop/JIT compiler/build/generated/lexer.cpp" > CMakeFiles/jit.dir/generated/lexer.cpp.i
+CMakeFiles/jit.dir/lexer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/jit.dir/lexer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Dhananjay/Desktop/guijit.2./jit/build/lexer.cpp > CMakeFiles/jit.dir/lexer.cpp.i
 
-CMakeFiles/jit.dir/generated/lexer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/generated/lexer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/Dhananjay/Desktop/JIT compiler/build/generated/lexer.cpp" -o CMakeFiles/jit.dir/generated/lexer.cpp.s
+CMakeFiles/jit.dir/lexer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/jit.dir/lexer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Dhananjay/Desktop/guijit.2./jit/build/lexer.cpp -o CMakeFiles/jit.dir/lexer.cpp.s
 
 # Object files for target jit
 jit_OBJECTS = \
 "CMakeFiles/jit.dir/src/main.cpp.o" \
-"CMakeFiles/jit.dir/src/helper.cpp.o" \
-"CMakeFiles/jit.dir/generated/parser.cpp.o" \
-"CMakeFiles/jit.dir/generated/lexer.cpp.o"
+"CMakeFiles/jit.dir/src/codegen.cpp.o" \
+"CMakeFiles/jit.dir/parser.cpp.o" \
+"CMakeFiles/jit.dir/lexer.cpp.o"
 
 # External object files for target jit
 jit_EXTERNAL_OBJECTS =
 
 jit: CMakeFiles/jit.dir/src/main.cpp.o
-jit: CMakeFiles/jit.dir/src/helper.cpp.o
-jit: CMakeFiles/jit.dir/generated/parser.cpp.o
-jit: CMakeFiles/jit.dir/generated/lexer.cpp.o
+jit: CMakeFiles/jit.dir/src/codegen.cpp.o
+jit: CMakeFiles/jit.dir/parser.cpp.o
+jit: CMakeFiles/jit.dir/lexer.cpp.o
 jit: CMakeFiles/jit.dir/build.make
+jit: libjit_backend.a
+jit: /usr/lib/llvm-17/lib/libLLVMCore.a
+jit: /usr/lib/llvm-17/lib/libLLVMIRReader.a
+jit: /usr/lib/llvm-17/lib/libLLVMMCJIT.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86CodeGen.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86Desc.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86Info.a
+jit: /usr/lib/llvm-17/lib/libLLVMSupport.a
+jit: /usr/lib/llvm-17/lib/libLLVMExecutionEngine.a
+jit: /usr/lib/llvm-17/lib/libLLVMPasses.a
+jit: /usr/lib/llvm-17/lib/libLLVMTransformUtils.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86CodeGen.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86AsmParser.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86Desc.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86Disassembler.a
+jit: /usr/lib/llvm-17/lib/libLLVMX86Info.a
+jit: /usr/lib/llvm-17/lib/libLLVMAsmPrinter.a
+jit: /usr/lib/llvm-17/lib/libLLVMCFGuard.a
+jit: /usr/lib/llvm-17/lib/libLLVMGlobalISel.a
+jit: /usr/lib/llvm-17/lib/libLLVMSelectionDAG.a
+jit: /usr/lib/llvm-17/lib/libLLVMRuntimeDyld.a
+jit: /usr/lib/llvm-17/lib/libLLVMOrcTargetProcess.a
+jit: /usr/lib/llvm-17/lib/libLLVMOrcShared.a
+jit: /usr/lib/llvm-17/lib/libLLVMCodeGen.a
+jit: /usr/lib/llvm-17/lib/libLLVMTarget.a
+jit: /usr/lib/llvm-17/lib/libLLVMCoroutines.a
+jit: /usr/lib/llvm-17/lib/libLLVMipo.a
+jit: /usr/lib/llvm-17/lib/libLLVMInstrumentation.a
+jit: /usr/lib/llvm-17/lib/libLLVMBitWriter.a
+jit: /usr/lib/llvm-17/lib/libLLVMFrontendOpenMP.a
+jit: /usr/lib/llvm-17/lib/libLLVMLinker.a
+jit: /usr/lib/llvm-17/lib/libLLVMIRPrinter.a
+jit: /usr/lib/llvm-17/lib/libLLVMObjCARCOpts.a
+jit: /usr/lib/llvm-17/lib/libLLVMScalarOpts.a
+jit: /usr/lib/llvm-17/lib/libLLVMAggressiveInstCombine.a
+jit: /usr/lib/llvm-17/lib/libLLVMInstCombine.a
+jit: /usr/lib/llvm-17/lib/libLLVMVectorize.a
+jit: /usr/lib/llvm-17/lib/libLLVMTransformUtils.a
+jit: /usr/lib/llvm-17/lib/libLLVMAnalysis.a
+jit: /usr/lib/llvm-17/lib/libLLVMProfileData.a
+jit: /usr/lib/llvm-17/lib/libLLVMSymbolize.a
+jit: /usr/lib/llvm-17/lib/libLLVMDebugInfoDWARF.a
+jit: /usr/lib/llvm-17/lib/libLLVMDebugInfoPDB.a
+jit: /usr/lib/llvm-17/lib/libLLVMObject.a
+jit: /usr/lib/llvm-17/lib/libLLVMIRReader.a
+jit: /usr/lib/llvm-17/lib/libLLVMAsmParser.a
+jit: /usr/lib/llvm-17/lib/libLLVMBitReader.a
+jit: /usr/lib/llvm-17/lib/libLLVMCore.a
+jit: /usr/lib/llvm-17/lib/libLLVMRemarks.a
+jit: /usr/lib/llvm-17/lib/libLLVMBitstreamReader.a
+jit: /usr/lib/llvm-17/lib/libLLVMTextAPI.a
+jit: /usr/lib/llvm-17/lib/libLLVMDebugInfoMSF.a
+jit: /usr/lib/llvm-17/lib/libLLVMDebugInfoBTF.a
+jit: /usr/lib/llvm-17/lib/libLLVMCodeGenTypes.a
+jit: /usr/lib/llvm-17/lib/libLLVMMCParser.a
+jit: /usr/lib/llvm-17/lib/libLLVMMCDisassembler.a
+jit: /usr/lib/llvm-17/lib/libLLVMMC.a
+jit: /usr/lib/llvm-17/lib/libLLVMBinaryFormat.a
+jit: /usr/lib/llvm-17/lib/libLLVMTargetParser.a
+jit: /usr/lib/llvm-17/lib/libLLVMDebugInfoCodeView.a
+jit: /usr/lib/llvm-17/lib/libLLVMSupport.a
+jit: /usr/lib/llvm-17/lib/libLLVMDemangle.a
+jit: /usr/lib/x86_64-linux-gnu/libz.so
+jit: /usr/lib/x86_64-linux-gnu/libzstd.so
+jit: /usr/lib/x86_64-linux-gnu/libtinfo.so
 jit: CMakeFiles/jit.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable jit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable jit"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/jit.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -164,9 +229,9 @@ CMakeFiles/jit.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/jit.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/jit.dir/clean
 
-CMakeFiles/jit.dir/depend: generated/lexer.cpp
-CMakeFiles/jit.dir/depend: generated/parser.cpp
-CMakeFiles/jit.dir/depend: generated/parser.hpp
-	cd "/home/Dhananjay/Desktop/JIT compiler/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/Dhananjay/Desktop/JIT compiler" "/home/Dhananjay/Desktop/JIT compiler" "/home/Dhananjay/Desktop/JIT compiler/build" "/home/Dhananjay/Desktop/JIT compiler/build" "/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles/jit.dir/DependInfo.cmake" "--color=$(COLOR)"
+CMakeFiles/jit.dir/depend: lexer.cpp
+CMakeFiles/jit.dir/depend: parser.cpp
+CMakeFiles/jit.dir/depend: parser.hpp
+	cd /home/Dhananjay/Desktop/guijit.2./jit/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/Dhananjay/Desktop/guijit.2./jit /home/Dhananjay/Desktop/guijit.2./jit /home/Dhananjay/Desktop/guijit.2./jit/build /home/Dhananjay/Desktop/guijit.2./jit/build /home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles/jit.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/jit.dir/depend
 

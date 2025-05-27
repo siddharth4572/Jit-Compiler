@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/Dhananjay/Desktop/JIT compiler"
+CMAKE_SOURCE_DIR = /home/Dhananjay/Desktop/guijit.2./jit
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/Dhananjay/Desktop/JIT compiler/build"
+CMAKE_BINARY_DIR = /home/Dhananjay/Desktop/guijit.2./jit/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" "/home/Dhananjay/Desktop/JIT compiler/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles /home/Dhananjay/Desktop/guijit.2./jit/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/Dhananjay/Desktop/JIT compiler/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Dhananjay/Desktop/guijit.2./jit/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,6 +117,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named intrinsics_gen
+
+# Build rule for target.
+intrinsics_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 intrinsics_gen
+.PHONY : intrinsics_gen
+
+# fast build rule for target.
+intrinsics_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/intrinsics_gen.dir/build.make CMakeFiles/intrinsics_gen.dir/build
+.PHONY : intrinsics_gen/fast
+
+#=============================================================================
+# Target rules for targets named omp_gen
+
+# Build rule for target.
+omp_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 omp_gen
+.PHONY : omp_gen
+
+# fast build rule for target.
+omp_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/omp_gen.dir/build.make CMakeFiles/omp_gen.dir/build
+.PHONY : omp_gen/fast
+
+#=============================================================================
+# Target rules for targets named acc_gen
+
+# Build rule for target.
+acc_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 acc_gen
+.PHONY : acc_gen
+
+# fast build rule for target.
+acc_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acc_gen.dir/build.make CMakeFiles/acc_gen.dir/build
+.PHONY : acc_gen/fast
+
+#=============================================================================
+# Target rules for targets named RISCVTargetParserTableGen
+
+# Build rule for target.
+RISCVTargetParserTableGen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RISCVTargetParserTableGen
+.PHONY : RISCVTargetParserTableGen
+
+# fast build rule for target.
+RISCVTargetParserTableGen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RISCVTargetParserTableGen.dir/build.make CMakeFiles/RISCVTargetParserTableGen.dir/build
+.PHONY : RISCVTargetParserTableGen/fast
+
+#=============================================================================
+# Target rules for targets named jit_backend
+
+# Build rule for target.
+jit_backend: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jit_backend
+.PHONY : jit_backend
+
+# fast build rule for target.
+jit_backend/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/build
+.PHONY : jit_backend/fast
+
+#=============================================================================
 # Target rules for targets named jit
 
 # Build rule for target.
@@ -129,60 +194,130 @@ jit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/build
 .PHONY : jit/fast
 
-generated/lexer.o: generated/lexer.cpp.o
-.PHONY : generated/lexer.o
+#=============================================================================
+# Target rules for targets named jit_gui
+
+# Build rule for target.
+jit_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jit_gui
+.PHONY : jit_gui
+
+# fast build rule for target.
+jit_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/build
+.PHONY : jit_gui/fast
+
+lexer.o: lexer.cpp.o
+.PHONY : lexer.o
 
 # target to build an object file
-generated/lexer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/lexer.cpp.o
-.PHONY : generated/lexer.cpp.o
+lexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/lexer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/lexer.cpp.o
+.PHONY : lexer.cpp.o
 
-generated/lexer.i: generated/lexer.cpp.i
-.PHONY : generated/lexer.i
+lexer.i: lexer.cpp.i
+.PHONY : lexer.i
 
 # target to preprocess a source file
-generated/lexer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/lexer.cpp.i
-.PHONY : generated/lexer.cpp.i
+lexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/lexer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/lexer.cpp.i
+.PHONY : lexer.cpp.i
 
-generated/lexer.s: generated/lexer.cpp.s
-.PHONY : generated/lexer.s
+lexer.s: lexer.cpp.s
+.PHONY : lexer.s
 
 # target to generate assembly for a file
-generated/lexer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/lexer.cpp.s
-.PHONY : generated/lexer.cpp.s
+lexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/lexer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/lexer.cpp.s
+.PHONY : lexer.cpp.s
 
-generated/parser.o: generated/parser.cpp.o
-.PHONY : generated/parser.o
+parser.o: parser.cpp.o
+.PHONY : parser.o
 
 # target to build an object file
-generated/parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/parser.cpp.o
-.PHONY : generated/parser.cpp.o
+parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/parser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/parser.cpp.o
+.PHONY : parser.cpp.o
 
-generated/parser.i: generated/parser.cpp.i
-.PHONY : generated/parser.i
+parser.i: parser.cpp.i
+.PHONY : parser.i
 
 # target to preprocess a source file
-generated/parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/parser.cpp.i
-.PHONY : generated/parser.cpp.i
+parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/parser.cpp.i
+.PHONY : parser.cpp.i
 
-generated/parser.s: generated/parser.cpp.s
-.PHONY : generated/parser.s
+parser.s: parser.cpp.s
+.PHONY : parser.s
 
 # target to generate assembly for a file
-generated/parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/generated/parser.cpp.s
-.PHONY : generated/parser.cpp.s
+parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/parser.cpp.s
+.PHONY : parser.cpp.s
+
+src/codegen.o: src/codegen.cpp.o
+.PHONY : src/codegen.o
+
+# target to build an object file
+src/codegen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/codegen.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/codegen.cpp.o
+.PHONY : src/codegen.cpp.o
+
+src/codegen.i: src/codegen.cpp.i
+.PHONY : src/codegen.i
+
+# target to preprocess a source file
+src/codegen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/codegen.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/codegen.cpp.i
+.PHONY : src/codegen.cpp.i
+
+src/codegen.s: src/codegen.cpp.s
+.PHONY : src/codegen.s
+
+# target to generate assembly for a file
+src/codegen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/codegen.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/codegen.cpp.s
+.PHONY : src/codegen.cpp.s
+
+src/gui_backend.o: src/gui_backend.cpp.o
+.PHONY : src/gui_backend.o
+
+# target to build an object file
+src/gui_backend.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/gui_backend.cpp.o
+.PHONY : src/gui_backend.cpp.o
+
+src/gui_backend.i: src/gui_backend.cpp.i
+.PHONY : src/gui_backend.i
+
+# target to preprocess a source file
+src/gui_backend.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/gui_backend.cpp.i
+.PHONY : src/gui_backend.cpp.i
+
+src/gui_backend.s: src/gui_backend.cpp.s
+.PHONY : src/gui_backend.s
+
+# target to generate assembly for a file
+src/gui_backend.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/gui_backend.cpp.s
+.PHONY : src/gui_backend.cpp.s
 
 src/helper.o: src/helper.cpp.o
 .PHONY : src/helper.o
 
 # target to build an object file
 src/helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/helper.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/helper.cpp.o
 .PHONY : src/helper.cpp.o
 
 src/helper.i: src/helper.cpp.i
@@ -190,7 +325,7 @@ src/helper.i: src/helper.cpp.i
 
 # target to preprocess a source file
 src/helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/helper.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/helper.cpp.i
 .PHONY : src/helper.cpp.i
 
 src/helper.s: src/helper.cpp.s
@@ -198,8 +333,59 @@ src/helper.s: src/helper.cpp.s
 
 # target to generate assembly for a file
 src/helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit.dir/build.make CMakeFiles/jit.dir/src/helper.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/helper.cpp.s
 .PHONY : src/helper.cpp.s
+
+src/jit_gui.o: src/jit_gui.cpp.o
+.PHONY : src/jit_gui.o
+
+# target to build an object file
+src/jit_gui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_gui.cpp.o
+.PHONY : src/jit_gui.cpp.o
+
+src/jit_gui.i: src/jit_gui.cpp.i
+.PHONY : src/jit_gui.i
+
+# target to preprocess a source file
+src/jit_gui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_gui.cpp.i
+.PHONY : src/jit_gui.cpp.i
+
+src/jit_gui.s: src/jit_gui.cpp.s
+.PHONY : src/jit_gui.s
+
+# target to generate assembly for a file
+src/jit_gui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_gui.cpp.s
+.PHONY : src/jit_gui.cpp.s
+
+src/jit_interface.o: src/jit_interface.cpp.o
+.PHONY : src/jit_interface.o
+
+# target to build an object file
+src/jit_interface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/jit_interface.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_interface.cpp.o
+.PHONY : src/jit_interface.cpp.o
+
+src/jit_interface.i: src/jit_interface.cpp.i
+.PHONY : src/jit_interface.i
+
+# target to preprocess a source file
+src/jit_interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/jit_interface.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_interface.cpp.i
+.PHONY : src/jit_interface.cpp.i
+
+src/jit_interface.s: src/jit_interface.cpp.s
+.PHONY : src/jit_interface.s
+
+# target to generate assembly for a file
+src/jit_interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_backend.dir/build.make CMakeFiles/jit_backend.dir/src/jit_interface.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jit_gui.dir/build.make CMakeFiles/jit_gui.dir/src/jit_interface.cpp.s
+.PHONY : src/jit_interface.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -233,16 +419,34 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... RISCVTargetParserTableGen"
+	@echo "... acc_gen"
+	@echo "... intrinsics_gen"
+	@echo "... omp_gen"
 	@echo "... jit"
-	@echo "... generated/lexer.o"
-	@echo "... generated/lexer.i"
-	@echo "... generated/lexer.s"
-	@echo "... generated/parser.o"
-	@echo "... generated/parser.i"
-	@echo "... generated/parser.s"
+	@echo "... jit_backend"
+	@echo "... jit_gui"
+	@echo "... lexer.o"
+	@echo "... lexer.i"
+	@echo "... lexer.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
+	@echo "... src/codegen.o"
+	@echo "... src/codegen.i"
+	@echo "... src/codegen.s"
+	@echo "... src/gui_backend.o"
+	@echo "... src/gui_backend.i"
+	@echo "... src/gui_backend.s"
 	@echo "... src/helper.o"
 	@echo "... src/helper.i"
 	@echo "... src/helper.s"
+	@echo "... src/jit_gui.o"
+	@echo "... src/jit_gui.i"
+	@echo "... src/jit_gui.s"
+	@echo "... src/jit_interface.o"
+	@echo "... src/jit_interface.i"
+	@echo "... src/jit_interface.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
